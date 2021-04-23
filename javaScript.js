@@ -143,3 +143,36 @@ const emptyList = function(selector){   //this function receives the selector of
     let list = document.querySelector(selector)
     list.innerHTML = ''
 }
+
+
+// =========================  EXTRA  ===========================
+
+// 41) Add an eventListener to alert when the mouse is over a link, displaying the URL
+
+const showURL = function(url){
+    console.log('now')
+}
+let link = document.getElementsByTagName('a')
+for(let i=0; i<link.length; i++){
+    link[i].addEventListener('mouseover', showURL())
+    // link[i].onmouseenter = showURL(link[i].href)
+    // link[i].onmouseover = showURL(link[i].href)
+}
+console.log(link)
+
+// 42) Add a button to hide every image on the page
+const hideImages = function(e){
+    console.log(e)
+    // let img = document.getElementsByTagName('img')
+    // for(let i=0; i<img.length; i++){
+    //     img[i].classList.add('hide')
+    // }
+}
+
+let div = document.getElementById('container')
+let newButton = document.createElement('button')
+newButton.innerText = 'Hide Images'
+newButton.addEventListener('click', hideImages(Event))
+console.log(newButton)
+div.appendChild(newButton)
+
