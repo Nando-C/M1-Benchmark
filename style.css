@@ -4,6 +4,7 @@
 body {
     max-width: 1200px;
     margin: auto;
+    background-color: #819887;
 }
 
 /* 12) Set every h1 to be centered */
@@ -46,9 +47,17 @@ p {
 td {
     border: 1px solid #00db71;
     border-radius: 0.8em;
+    padding: 0.5em;
 }
 
 /* 20) Add a dotted red border to each tr (note: tr does not accept a border property ;-) ) */
 tr {
     outline: 3px dotted red;
+}
+
+img {
+    width: 10em;
+}
+.pinkBorder {
+    border: 5px solid pink;
 }

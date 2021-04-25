@@ -127,7 +127,7 @@ const addRedBkgnd = function(){
 
 // 38) Console log "Page loaded" when the page is correctly loaded
 window.onload =function() {
-console.log('Page loaded')
+    console.log('Page loaded')
 }
 
 // 39) Write a function to add new items to a UL
@@ -149,30 +149,115 @@ const emptyList = function(selector){   //this function receives the selector of
 
 // 41) Add an eventListener to alert when the mouse is over a link, displaying the URL
 
-const showURL = function(url){
-    console.log('now')
+const showURL = function(event){
+    alert(event.target.href)
 }
 let link = document.getElementsByTagName('a')
 for(let i=0; i<link.length; i++){
-    link[i].addEventListener('mouseover', showURL())
-    // link[i].onmouseenter = showURL(link[i].href)
-    // link[i].onmouseover = showURL(link[i].href)
+    link[i].addEventListener('mouseenter', showURL)
 }
-console.log(link)
 
-// 42) Add a button to hide every image on the page
-const hideImages = function(e){
-    console.log(e)
-    // let img = document.getElementsByTagName('img')
-    // for(let i=0; i<img.length; i++){
-    //     img[i].classList.add('hide')
-    // }
+// // 42) Add a button to hide every image on the page
+const hideImages = function(event){
+    let img = document.getElementsByTagName('img')
+
+    for(let i=0; i<img.length; i++){
+        img[i].classList.toggle('hide')
+    }
 }
 
 let div = document.getElementById('container')
-let newButton = document.createElement('button')
-newButton.innerText = 'Hide Images'
-newButton.addEventListener('click', hideImages(Event))
-console.log(newButton)
-div.appendChild(newButton)
+let hideImgButton = document.createElement('button')
+hideImgButton.innerText = 'Hide/Show Images'
+hideImgButton.addEventListener('click', hideImages)
+console.log(hideImgButton)
+div.appendChild(hideImgButton)
 
+// 43) Add a button to hide and show the table from the page
+const hideTable = function(){
+    let table = document.getElementsByTagName('table')[0]
+    table.classList.toggle('hide')
+}
+let hideTableButton = document.createElement('button')
+hideTableButton.innerText = 'Hide / Show Table'
+hideTableButton.addEventListener('click', hideTable)
+div.appendChild(hideTableButton)
+
+// 44) Write a function to sum every number inside the TD (if the content is numeric)
+const sumTableTd = function(){
+    let tdArray = document.getElementsByTagName('td')
+    let sum = 0
+    let numArr = []
+    for(let i=0; i<tdArray.length; i++){
+        let num = parseInt(tdArray[i].innerText)
+        if(isNaN(num) === false) {
+            sum += num
+        } 
+    }
+    // console.log(sum)
+    return sum
+}
+
+// 45) Delete the last letter from the title each time the user clicks on it
+const delLast = function(event){
+    let str = event.target.innerText
+    str = str.substring(0, str.length - 1)
+    title.innerText = str
+}
+
+let title = document.getElementById('title')
+title.addEventListener('click', delLast)
+
+// 46) Change a single TD background color when the user clicks on it
+const changeBkgnd = function(event) {
+    let tdSelected = event.target
+    tdSelected.style.backgroundColor = 'red'
+}
+ let tdArr = document.getElementsByTagName('td')
+ for(let i=0; i<tdArr.length; i++){
+     tdArr[i].addEventListener('click', changeBkgnd)
+ }
+
+//  47) Add a button DELETE, on click it should delete a random TD from the page
+const deleteRandTd = function(){
+    let rand = Math.floor(Math.random() * tdArr.length)
+    tdArr[rand].classList.add('hide')
+}
+
+let delTdButton = document.createElement('button')
+delTdButton.innerText = 'Delete Random cell'
+delTdButton.onclick = deleteRandTd
+div.appendChild(delTdButton)
+
+// 48) Add a pink border to a cell when the mouse is over it
+const pinkBorder = function(event){
+    let selected = event.target
+    selected.classList.toggle('pinkBorder')
+}
+// let tdArr = document.getElementsByTagName('td')
+for(let i=0; i<tdArr.length; i++){
+    tdArr[i].addEventListener('mouseover', pinkBorder)
+}
+
+// 49) Write a function to add a table with 4 rows and 3 columns programmatically
+const addTable = function(){
+    let newTable = document.createElement('table')
+    console.log(newTable)
+    // let rows = []
+    for(let r=0; r<4; r++){
+        let newRow = document.createElement('tr')
+        for(let c=0; c<3; c++){
+            let newTd = document.createElement('td')
+            newTd.innerText = 'row: ' + [r+1] + ' column: ' + [c+1]
+            newRow.appendChild(newTd)
+        }
+        newTable.appendChild(newRow)
+    }
+    div.appendChild(newTable)
+}
+
+// 50) Write a function to remove the table from the page
+const deleteTable = function(){
+    let table = document.getElementById('table')
+    table.innerHTML = ""
+}
